@@ -25,7 +25,7 @@ export interface IUser extends Document {
   verifyCodeExpiry: Date;
   isVerified: boolean;
   isAcceptingMessage: boolean;
-  message: IMessage[];
+  messages: IMessage[];
 }
 
 const UserSchema: Schema<IUser> = new Schema({
@@ -59,7 +59,7 @@ const UserSchema: Schema<IUser> = new Schema({
     type: Boolean,
     default: false,
   },
-  message: [MessageSchema],
+  messages: [MessageSchema],
 });
 
 const UserModel =
