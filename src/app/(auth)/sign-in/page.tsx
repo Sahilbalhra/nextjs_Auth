@@ -37,6 +37,8 @@ export default function SignInForm() {
       password: data.password,
     });
 
+    console.log("result", result);
+
     if (result?.error) {
       if (result.error === "CredentialsSignin") {
         toast({
