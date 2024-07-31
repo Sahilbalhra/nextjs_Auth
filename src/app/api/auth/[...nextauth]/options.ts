@@ -7,17 +7,17 @@ import UserModel from "@/model/user.model";
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      id: "Credentails",
+      // id: "Credentails",
       name: "Credentials",
       credentials: {
         email: {
           label: "Email",
           type: "text",
-          placeholder: "Enter your email",
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials: any, req): Promise<any> {
+      async authorize(credentials: any): Promise<any> {
+        console.log("credentials", credentials);
         await dbConnect();
         const user = await UserModel.findOne({
           $or: [
@@ -64,11 +64,11 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  pages: {
-    signIn: "/sign-in",
-  },
   session: {
     strategy: "jwt",
   },
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/sign-in",
+  },
 };

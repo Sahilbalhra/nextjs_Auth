@@ -65,7 +65,8 @@ export default function SignUpForm() {
       }
     };
     checkUsernameUnique();
-  }, [debouncedUsername]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedUsername?.[0]]);
 
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
