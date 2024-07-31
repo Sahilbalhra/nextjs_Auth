@@ -10,6 +10,8 @@ export async function POST(request: Request) {
 
     const user = await UserModel.findOne({ username });
 
+    console.log("user", user);
+
     if (!user) {
       return Response.json(
         { message: "User Not found", success: false },
@@ -17,7 +19,7 @@ export async function POST(request: Request) {
       );
     }
 
-    if (user.isAcceptingMessage) {
+    if (!user.isAcceptingMessage) {
       return Response.json(
         { message: "User Not Accepting the Messages", success: false },
         { status: 403 }
@@ -32,7 +34,7 @@ export async function POST(request: Request) {
 
     return Response.json(
       { message: "Message sent successfully", success: true },
-      { status: 401 }
+      { status: 201 }
     );
   } catch (error) {
     console.error("Unknown error ", error);
